@@ -1,18 +1,12 @@
 /* eslint-disable prettier/prettier */
 const nodemailer = require('nodemailer');
-
-const transporter = nodemailer.createTransport({
-  host: "smtp-mail.outlook.com", 
-  secureConnection: false, // TLS requires secureConnection to be false
-  port: 587,
-  tls: {
-    ciphers:'SSLv3',
-    rejectUnauthorized: false,
-  },
+const MailgunTransport = require('mailgun-nodemailer-transport');
+ 
+const transporter = nodemailer.createTransport(new MailgunTransport({
   auth: {
-    user: 'mam.baoro@outlook.fr',
-    pass: process.env.OUTLOOK_PASS,
+    domain: 'emailverificationapp.mambaoro.com https://app.mailgun.com/app/domains',
+    apiKey: process.env.MAILGUN_API_KEY,
   },
-});
+}));
 
 module.exports = transporter;
