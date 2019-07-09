@@ -34,12 +34,11 @@ router.post('/createUser', async (req, res) => {
         user: 'mam.baoro@outlook.fr',
         pass: process.env.OUTLOOK_PASS,
       },
+      secure: false,
       from: 'mam.baoro@outlook.fr',
       to: userInstance.email,
       subject: 'Email Confirmation',
       html: `Please, confirm your email by clicking the following link: <a href=${url}>${url}</a>`,
-      onError: e => console.log(e),
-      onSuccess: i => console.log(i),
     });
     res.send({ accepted: true });
   } catch (e) {
