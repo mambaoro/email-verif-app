@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-expressions */
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
+const nodeoutlook = require('nodejs-nodemailer-outlook');
 const User = require('../models/User');
-const transporter = require('../config/transporter');
 
 // eslint-disable-next-line consistent-return
 router.post('/createUser', async (req, res) => {
@@ -29,13 +29,19 @@ router.post('/createUser', async (req, res) => {
       { expiresIn: '7d' },
     );
     const url = `http://localhost:3000/confirmation/${token}`;
-    const sendingResponse = await transporter.messages().send({
-      to: userInstance.email,
+    await nodeoutlook.sendEmail({
+      auth: {
+        user: 'mam.baoro@outlook.fr',
+        pass: process.env.OUTLOOK_PASS,
+      },
       from: 'mam.baoro@outlook.fr',
-      subject: 'Email confirmation',
+      to: userInstance.email,
+      subject: 'Email Confirmation',
       html: `Please, confirm your email by clicking the following link: <a href=${url}>${url}</a>`,
+      onError: e => console.log(e),
+      onSuccess: i => console.log(i),
     });
-    sendingResponse.accepted && res.send({ accepted: true });
+    res.send({ accepted: true });
   } catch (e) {
     res.status(400).send({ accepted: false });
   }

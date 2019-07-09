@@ -1,9 +1,14 @@
 /* eslint-disable prettier/prettier */
-const mailgun = require('mailgun-js');
 
-const transporter = mailgun({
-  domain: 'emailverificationapp.mambaoro.com',
-  apiKey: process.env.MAILGUN_API_KEY,
-});
+const config = {
+  auth: {
+    user: "mam.baoro@outlook.fr",
+    pass: process.env.OUTLOOK_PASS,
+  }, from: 'mam.baoro@outlook.fr',
+  to: 'receiver@gmail.com',
+  subject: 'Hey you, awesome!',
+  html: '<b>This is bold text</b>',
+  text: 'This is text version!',
+}
 
-module.exports = transporter;
+module.exports = config;

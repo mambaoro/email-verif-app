@@ -27,8 +27,8 @@ function Main() {
               It&apos;s been created with NodeJS, Nodemailer, MySQL and React.
               You need to fill the form below to create an username and an
               email, after submitting the form you will be asked to verify your
-              email. Check your inbox and click the link received from
-              mam.baoro@outlook.fr. <br />
+              email. Check your inbox and click the confirmation link.
+              <br />
               <br />
               Feel free to use a temporary email for the purpose of this demo.
             </p>
