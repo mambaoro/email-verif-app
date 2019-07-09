@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-expressions */
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
@@ -9,12 +8,18 @@ const transporter = require('../config/transporter');
 router.post('/createUser', async (req, res) => {
   try {
     await User.sync();
-    const exists = await User.findOne({ where: { isVerified: true, email: req.body.email }});
+    const exists = await User.findOne({
+      where: { isVerified: true, email: req.body.email },
+    });
     if (exists) {
       return res.send({ isVerified: true });
     }
     const [userInstance] = await User.findOrCreate({
-      where: { username: req.body.username, email: req.body.email, isVerified: false },
+      where: {
+        username: req.body.username,
+        email: req.body.email,
+        isVerified: false,
+      },
     });
     const token = await jwt.sign(
       {
@@ -23,7 +28,7 @@ router.post('/createUser', async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '7d' },
     );
-    const url = `https://emailverificationapp.mambaoro.com/confirmation/${token}`;
+    const url = `http://emailverificationapp.mambaoro.com/confirmation/${token}`;
     const sendingResponse = await transporter.sendMail({
       to: userInstance.email,
       subject: 'Email confirmation',
