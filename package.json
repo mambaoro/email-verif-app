@@ -1,10 +1,10 @@
 {
-  "name": "react-personal-boilerplate",
+  "name": "email-verification-app",
   "version": "",
-  "description": "Personal boilerplate",
+  "description": "Email verification app with NodeJS",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "git://github.com/mambaoro/email-verif-app.git"
   },
   "engines": {
     "npm": ">=5",
