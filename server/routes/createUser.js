@@ -28,7 +28,7 @@ router.post('/createUser', async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '7d' },
     );
-    const url = `http://localhost:3000/confirmation/${token}`;
+    const url = `https://emailverificationapp.mambaoro.com/confirmation/${token}`;
     await nodeoutlook.sendEmail({
       auth: {
         user: 'mam.baoro@outlook.fr',
