@@ -1,5 +1,6 @@
 /* eslint consistent-return:0 import/order:0 */
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 require('dotenv').config();
 
 const express = require('express');
