@@ -31,6 +31,7 @@ router.post('/createUser', async (req, res) => {
     const url = `http://emailverificationapp.mambaoro.com/confirmation/${token}`;
     const sendingResponse = await transporter.sendMail({
       to: userInstance.email,
+      from: 'mam.baoro@outlook.fr',
       subject: 'Email confirmation',
       html: `Please, confirm your email by clicking the following link: <a href=${url}>${url}</a>`,
     });
