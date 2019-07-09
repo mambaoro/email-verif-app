@@ -28,8 +28,8 @@ router.post('/createUser', async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '7d' },
     );
-    const url = `http://emailverificationapp.mambaoro.com/confirmation/${token}`;
-    const sendingResponse = await transporter.sendMail({
+    const url = `http://localhost:3000/confirmation/${token}`;
+    const sendingResponse = await transporter.messages().send({
       to: userInstance.email,
       from: 'mam.baoro@outlook.fr',
       subject: 'Email confirmation',
