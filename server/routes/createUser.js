@@ -34,7 +34,7 @@ router.post('/createUser', async (req, res) => {
         user: 'mam.baoro@outlook.fr',
         pass: process.env.OUTLOOK_PASS,
       },
-      secure: false,
+      secure: true,
       from: 'mam.baoro@outlook.fr',
       to: userInstance.email,
       subject: 'Email Confirmation',
